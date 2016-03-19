@@ -47,7 +47,7 @@ class SecurityConcerns:
                 }
             ]
         }
-        i = web.input();
+        post_data = web.data()
         return json.dumps(response)
 
     def OPTIONS(self):
