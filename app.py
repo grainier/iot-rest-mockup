@@ -14,6 +14,7 @@ urls = (
     "/platforms", "Platforms",
     "/ownerships", "Ownerships",
     "/userGroups", "UserGroups",
+    "/devices", "Devices",
     "/users/(.*)", "User"
 )
 app = web.application(urls, globals())
@@ -96,7 +97,7 @@ class ConnectivityStatus:
         return True
 
 
-class Alert:
+class Alerts:
     def POST(self):
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
@@ -218,6 +219,66 @@ class UserGroups:
                     "id": "engineering",
                     "label": "Engineering",
                     "count": randint(100, 500)
+                }
+            ]
+        }
+        return json.dumps(response)
+
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        web.header('Access-Control-Allow-Headers', 'Content-Type')
+        web.header("Content-Type", "application/json")
+        return True
+
+
+class Devices:
+    def POST(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header("Content-Type", "application/json")
+        response = {
+            "filteredBy": "devices",
+            "data": [
+                {
+                    "id": "001",
+                    "label": "Nexus P",
+                    "status": "Blocked",
+                    "platform": "Android",
+                    "model": "HNP001",
+                    "actions": "Action",
+                },
+                {
+                    "id": "002",
+                    "label": "Galaxy Note 5",
+                    "status": "Unmonitored",
+                    "platform": "Android",
+                    "model": "SGN002",
+                    "actions": "Action",
+                },
+                {
+                    "id": "003",
+                    "label": "iPhone 6",
+                    "status": "Compliant",
+                    "platform": "iOS",
+                    "model": "AIP003",
+                    "actions": "Action",
+                },
+                {
+                    "id": "004",
+                    "label": "Galaxy S7",
+                    "status": "NonCompliant",
+                    "platform": "Android",
+                    "model": "SGS004",
+                    "actions": "Action",
+                },
+                {
+                    "id": "005",
+                    "label": "iPad Mini",
+                    "status": "Inactive",
+                    "platform": "iOS",
+                    "model": "IPM005",
+                    "actions": "Action",
                 }
             ]
         }
