@@ -11,6 +11,9 @@ urls = (
     "/securityConcerns", "SecurityConcerns",
     "/connectivityStatus", "ConnectivityStatus",
     "/alerts", "Alerts",
+    "/platforms", "Platforms",
+    "/ownerships", "Ownerships",
+    "/userGroups", "UserGroups",
     "/users/(.*)", "User"
 )
 app = web.application(urls, globals())
@@ -93,7 +96,7 @@ class ConnectivityStatus:
         return True
 
 
-class Alerts:
+class Alert:
     def POST(self):
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
@@ -119,6 +122,101 @@ class Alerts:
                 {
                     "id": "Normal",
                     "label": "Normal",
+                    "count": randint(100, 500)
+                }
+            ]
+        }
+        return json.dumps(response)
+
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        web.header('Access-Control-Allow-Headers', 'Content-Type')
+        web.header("Content-Type", "application/json")
+        return True
+
+
+class Platforms:
+    def POST(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header("Content-Type", "application/json")
+        response = {
+            "filteredBy": "platforms",
+            "data": [
+                {
+                    "id": "ios",
+                    "label": "iOS",
+                    "count": randint(100, 500)
+                },
+                {
+                    "id": "android",
+                    "label": "Android",
+                    "count": randint(100, 500)
+                }
+            ]
+        }
+        return json.dumps(response)
+
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        web.header('Access-Control-Allow-Headers', 'Content-Type')
+        web.header("Content-Type", "application/json")
+        return True
+
+
+class Ownerships:
+    def POST(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header("Content-Type", "application/json")
+        response = {
+            "filteredBy": "ownerships",
+            "data": [
+                {
+                    "id": "cope",
+                    "label": "COPE",
+                    "count": randint(100, 500)
+                },
+                {
+                    "id": "byod",
+                    "label": "BYOD",
+                    "count": randint(100, 500)
+                }
+            ]
+        }
+        return json.dumps(response)
+
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        web.header('Access-Control-Allow-Headers', 'Content-Type')
+        web.header("Content-Type", "application/json")
+        return True
+
+
+class UserGroups:
+    def POST(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header("Content-Type", "application/json")
+        response = {
+            "filteredBy": "userGroups",
+            "data": [
+                {
+                    "id": "sales",
+                    "label": "Sales",
+                    "count": randint(100, 500)
+                },
+                {
+                    "id": "marketing",
+                    "label": "Marketing",
+                    "count": randint(100, 500)
+                },
+                {
+                    "id": "engineering",
+                    "label": "Engineering",
                     "count": randint(100, 500)
                 }
             ]
