@@ -15,6 +15,7 @@ urls = (
     "/ownerships", "Ownerships",
     "/userGroups", "UserGroups",
     "/devices", "Devices",
+    "/devicesCount", "DevicesCount",
     "/users/(.*)", "User"
 )
 app = web.application(urls, globals())
@@ -281,6 +282,28 @@ class Devices:
                     "actions": "Action",
                 }
             ]
+        }
+        return json.dumps(response)
+
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        web.header('Access-Control-Allow-Headers', 'Content-Type')
+        web.header("Content-Type", "application/json")
+        return True
+
+
+class DevicesCount:
+    def POST(self):
+        web.header('Access-Control-Allow-Origin', '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header("Content-Type", "application/json")
+        total_count = randint(200, 500)
+        response = {
+            "data": {
+                "totalCount": total_count,
+                "filteredCount": randint(100, total_count)
+            }
         }
         return json.dumps(response)
 
