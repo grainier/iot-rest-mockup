@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import web
-from random import randint
+from random import sample, randint
 import json
 from web.wsgiserver import CherryPyWSGIServer
 
@@ -28,10 +28,10 @@ class SecurityConcerns:
         web.header('Access-Control-Allow-Headers', 'Content-Type')
         web.header("Content-Type", "application/json")
         response = {
-            "filteredBy": "securityConcerns",
+            "context": "securityConcerns",
             "data": [
                 {
-                    "id": "non-compliant",
+                    "group": "non-compliant",
                     "label": "Non Compliant",
                     "count": randint(100, 500)
                 },
@@ -68,7 +68,7 @@ class ConnectivityStatus:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
+        response = [{
             "filteredBy": "connectivityStatus",
             "data": [
                 {
@@ -87,7 +87,7 @@ class ConnectivityStatus:
                     "count": randint(100, 500)
                 }
             ]
-        }
+        }]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -204,7 +204,7 @@ class UserGroups:
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
         response = {
-            "filteredBy": "userGroups",
+            "viewId": "userGroups",
             "data": [
                 {
                     "id": "sales",
@@ -235,53 +235,54 @@ class UserGroups:
 
 class Devices:
     def POST(self):
+        l = [
+            {
+                "id": "001",
+                "label": "Nexus P",
+                "status": "Blocked",
+                "platform": "Android",
+                "model": "HNP001",
+                "actions": "Action",
+            },
+            {
+                "id": "002",
+                "label": "Galaxy Note 5",
+                "status": "Unmonitored",
+                "platform": "Android",
+                "model": "SGN002",
+                "actions": "Action",
+            },
+            {
+                "id": "003",
+                "label": "iPhone 6",
+                "status": "Compliant",
+                "platform": "iOS",
+                "model": "AIP003",
+                "actions": "Action",
+            },
+            {
+                "id": "004",
+                "label": "Galaxy S7",
+                "status": "NonCompliant",
+                "platform": "Android",
+                "model": "SGS004",
+                "actions": "Action",
+            },
+            {
+                "id": "005",
+                "label": "iPad Mini",
+                "status": "Inactive",
+                "platform": "iOS",
+                "model": "IPM005",
+                "actions": "Action",
+            }
+        ]
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
         response = {
             "filteredBy": "devices",
-            "data": [
-                {
-                    "id": "001",
-                    "label": "Nexus P",
-                    "status": "Blocked",
-                    "platform": "Android",
-                    "model": "HNP001",
-                    "actions": "Action",
-                },
-                {
-                    "id": "002",
-                    "label": "Galaxy Note 5",
-                    "status": "Unmonitored",
-                    "platform": "Android",
-                    "model": "SGN002",
-                    "actions": "Action",
-                },
-                {
-                    "id": "003",
-                    "label": "iPhone 6",
-                    "status": "Compliant",
-                    "platform": "iOS",
-                    "model": "AIP003",
-                    "actions": "Action",
-                },
-                {
-                    "id": "004",
-                    "label": "Galaxy S7",
-                    "status": "NonCompliant",
-                    "platform": "Android",
-                    "model": "SGS004",
-                    "actions": "Action",
-                },
-                {
-                    "id": "005",
-                    "label": "iPad Mini",
-                    "status": "Inactive",
-                    "platform": "iOS",
-                    "model": "IPM005",
-                    "actions": "Action",
-                }
-            ]
+            "data": sample(l, randint(2, len(l)))
         }
         return json.dumps(response)
 
@@ -299,12 +300,21 @@ class DevicesCount:
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
         total_count = randint(200, 500)
-        response = {
-            "data": {
-                "totalCount": total_count,
-                "filteredCount": randint(100, total_count)
-            }
-        }
+        response = [{
+            "context": "deviceCount",
+            "data": [
+                {
+                    "group": "totalCount",
+                    "label": "Total Count",
+                    "count": total_count
+                },
+                {
+                    "group": "filteredCount",
+                    "label": "Filtered Count",
+                    "count": randint(100, total_count)
+                }
+            ]
+        }]
         return json.dumps(response)
 
     def OPTIONS(self):
