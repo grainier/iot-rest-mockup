@@ -27,31 +27,33 @@ class SecurityConcerns:
         web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         web.header('Access-Control-Allow-Headers', 'Content-Type')
         web.header("Content-Type", "application/json")
-        response = {
-            "context": "securityConcerns",
-            "data": [
-                {
-                    "group": "non-compliant",
-                    "label": "Non Compliant",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "no-passcode",
-                    "label": "No Passcode",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "no-encryption",
-                    "label": "Non encrypted",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "unmonitored",
-                    "label": "Unmonitored",
-                    "count": randint(100, 500)
-                }
-            ]
-        }
+        response = [
+            {
+                "context": "securityConcerns",
+                "data": [
+                    {
+                        "group": "non-compliant",
+                        "label": "Non Compliant",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "no-passcode",
+                        "label": "No Passcode",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "no-encryption",
+                        "label": "Non encrypted",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "unmonitored",
+                        "label": "Unmonitored",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         post_data = web.data()
         return json.dumps(response)
 
@@ -68,26 +70,28 @@ class ConnectivityStatus:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = [{
-            "filteredBy": "connectivityStatus",
-            "data": [
-                {
-                    "id": "active",
-                    "label": "Active",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "blocked",
-                    "label": "Blocked",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "inactive",
-                    "label": "Inactive",
-                    "count": randint(100, 500)
-                }
-            ]
-        }]
+        response = [
+            {
+                "context": "connectivityStatus",
+                "data": [
+                    {
+                        "group": "active",
+                        "label": "Active",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "blocked",
+                        "label": "Blocked",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "inactive",
+                        "label": "Inactive",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -103,31 +107,33 @@ class Alerts:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
-            "filteredBy": "alerts",
-            "data": [
-                {
-                    "id": "critical",
-                    "label": "Critical",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "high",
-                    "label": "High",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "medium",
-                    "label": "Medium",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "Normal",
-                    "label": "Normal",
-                    "count": randint(100, 500)
-                }
-            ]
-        }
+        response = [
+            {
+                "context": "alerts",
+                "data": [
+                    {
+                        "group": "critical",
+                        "label": "Critical",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "high",
+                        "label": "High",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "medium",
+                        "label": "Medium",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "Normal",
+                        "label": "Normal",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -143,21 +149,23 @@ class Platforms:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
-            "filteredBy": "platforms",
-            "data": [
-                {
-                    "id": "ios",
-                    "label": "iOS",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "android",
-                    "label": "Android",
-                    "count": randint(100, 500)
-                }
-            ]
-        }
+        response = [
+            {
+                "context": "platforms",
+                "data": [
+                    {
+                        "group": "ios",
+                        "label": "iOS",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "android",
+                        "label": "Android",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -173,21 +181,23 @@ class Ownerships:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
-            "filteredBy": "ownerships",
-            "data": [
-                {
-                    "id": "cope",
-                    "label": "COPE",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "byod",
-                    "label": "BYOD",
-                    "count": randint(100, 500)
-                }
-            ]
-        }
+        response = [
+            {
+                "context": "ownerships",
+                "data": [
+                    {
+                        "group": "cope",
+                        "label": "COPE",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "byod",
+                        "label": "BYOD",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -203,26 +213,28 @@ class UserGroups:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
-            "viewId": "userGroups",
-            "data": [
-                {
-                    "id": "sales",
-                    "label": "Sales",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "marketing",
-                    "label": "Marketing",
-                    "count": randint(100, 500)
-                },
-                {
-                    "id": "engineering",
-                    "label": "Engineering",
-                    "count": randint(100, 500)
-                }
-            ]
-        }
+        response = [
+            {
+                "viewId": "userGroups",
+                "data": [
+                    {
+                        "group": "sales",
+                        "label": "Sales",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "marketing",
+                        "label": "Marketing",
+                        "count": randint(100, 500)
+                    },
+                    {
+                        "group": "engineering",
+                        "label": "Engineering",
+                        "count": randint(100, 500)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -280,10 +292,12 @@ class Devices:
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
-        response = {
-            "filteredBy": "devices",
-            "data": sample(l, randint(2, len(l)))
-        }
+        response = [
+            {
+                "context": "devices",
+                "data": sample(l, randint(2, len(l)))
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
@@ -300,21 +314,23 @@ class DevicesCount:
         web.header('Access-Control-Allow-Credentials', 'true')
         web.header("Content-Type", "application/json")
         total_count = randint(200, 500)
-        response = [{
-            "context": "deviceCount",
-            "data": [
-                {
-                    "group": "totalCount",
-                    "label": "Total Count",
-                    "count": total_count
-                },
-                {
-                    "group": "filteredCount",
-                    "label": "Filtered Count",
-                    "count": randint(100, total_count)
-                }
-            ]
-        }]
+        response = [
+            {
+                "context": "deviceCount",
+                "data": [
+                    {
+                        "group": "totalCount",
+                        "label": "Total Count",
+                        "count": total_count
+                    },
+                    {
+                        "group": "filteredCount",
+                        "label": "Filtered Count",
+                        "count": randint(100, total_count)
+                    }
+                ]
+            }
+        ]
         return json.dumps(response)
 
     def OPTIONS(self):
