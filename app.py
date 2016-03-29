@@ -215,7 +215,7 @@ class UserGroups:
         web.header("Content-Type", "application/json")
         response = [
             {
-                "viewId": "userGroups",
+                "context": "userGroups",
                 "data": [
                     {
                         "group": "sales",
