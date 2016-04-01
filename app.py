@@ -11,9 +11,7 @@ urls = (
     "/securityConcerns", "SecurityConcerns",
     "/connectivityStatus", "ConnectivityStatus",
     "/alerts", "Alerts",
-    "/platforms", "Platforms",
-    "/ownerships", "Ownerships",
-    "/userGroups", "UserGroups",
+    "/groups", "Groups",
     "/devices", "Devices",
     "/devicesCount", "DevicesCount",
     "/users/(.*)", "User"
@@ -144,7 +142,7 @@ class Alerts:
         return True
 
 
-class Platforms:
+class Groups:
     def POST(self):
         web.header('Access-Control-Allow-Origin', '*')
         web.header('Access-Control-Allow-Credentials', 'true')
@@ -164,24 +162,7 @@ class Platforms:
                         "count": randint(100, 500)
                     }
                 ]
-            }
-        ]
-        return json.dumps(response)
-
-    def OPTIONS(self):
-        web.header('Access-Control-Allow-Origin', '*')
-        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        web.header('Access-Control-Allow-Headers', 'Content-Type')
-        web.header("Content-Type", "application/json")
-        return True
-
-
-class Ownerships:
-    def POST(self):
-        web.header('Access-Control-Allow-Origin', '*')
-        web.header('Access-Control-Allow-Credentials', 'true')
-        web.header("Content-Type", "application/json")
-        response = [
+            },
             {
                 "context": "ownerships",
                 "data": [
@@ -196,24 +177,7 @@ class Ownerships:
                         "count": randint(100, 500)
                     }
                 ]
-            }
-        ]
-        return json.dumps(response)
-
-    def OPTIONS(self):
-        web.header('Access-Control-Allow-Origin', '*')
-        web.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        web.header('Access-Control-Allow-Headers', 'Content-Type')
-        web.header("Content-Type", "application/json")
-        return True
-
-
-class UserGroups:
-    def POST(self):
-        web.header('Access-Control-Allow-Origin', '*')
-        web.header('Access-Control-Allow-Credentials', 'true')
-        web.header("Content-Type", "application/json")
-        response = [
+            },
             {
                 "context": "userGroups",
                 "data": [
@@ -234,6 +198,7 @@ class UserGroups:
                     }
                 ]
             }
+
         ]
         return json.dumps(response)
 
